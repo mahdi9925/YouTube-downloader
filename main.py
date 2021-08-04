@@ -3,6 +3,7 @@ from YouTube_dl import Ui_MainWindow
 from EnterURL import Ui_Dialog
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 import sys
+import pafy
 
 
 class Persenolize(QMainWindow, Ui_MainWindow):
@@ -26,6 +27,13 @@ class Enter_url_window(QDialog):
         QDialog.__init__(self)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.setFixedSize(590,247)
+
+        self.ui.ok.clicked.connect(self.change_window_size)
+
+    def change_window_size(self):
+        self.setFixedWidth(590)
+        self.setFixedHeight(500)
 
         
 
