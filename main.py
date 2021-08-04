@@ -1,6 +1,6 @@
 
 from YouTube_dl import Ui_MainWindow
-from DialogEnterURL import Ui_Dialog
+from EnterURL import Ui_Dialog
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 import sys
 
@@ -28,7 +28,6 @@ class Enter_url_window(QDialog):
         self.ui.setupUi(self)
 
         
-
 
 app = QApplication(sys.argv)
 main = Persenolize()
