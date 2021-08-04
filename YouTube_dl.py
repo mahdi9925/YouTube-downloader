@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'YouTube-dl.ui'
+# Form implementation generated from reading ui file 'YouTube_dl.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -58,20 +58,20 @@ class Ui_MainWindow(object):
         self.frame_3.setObjectName("frame_3")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_3)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_3)
-        self.pushButton_2.setMaximumSize(QtCore.QSize(100, 100))
-        self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_2.setStyleSheet("QPushButton{\n"
+        self.add = QtWidgets.QPushButton(self.frame_3)
+        self.add.setMaximumSize(QtCore.QSize(100, 100))
+        self.add.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.add.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "}\n"
 "")
-        self.pushButton_2.setText("")
+        self.add.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/icons/icons8-add-96 (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_2.setIcon(icon)
-        self.pushButton_2.setIconSize(QtCore.QSize(50, 50))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_2.addWidget(self.pushButton_2)
+        self.add.setIcon(icon)
+        self.add.setIconSize(QtCore.QSize(50, 50))
+        self.add.setObjectName("add")
+        self.horizontalLayout_2.addWidget(self.add)
         self.verticalLayout.addWidget(self.frame_3, 0, QtCore.Qt.AlignLeft)
         self.horizontalLayout.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
