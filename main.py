@@ -8,27 +8,27 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 from PyQt5.QtCore import QMutex, QObject, QThread, pyqtSignal
 
 title = ''
+duration = ''
 mutex = QMutex()
 
 
-class AccountManager(QObject):
+class Manager(QObject):
     finished = pyqtSignal()
-    updatedBalance = pyqtSignal()
+    UPDATE = pyqtSignal()
 
-    def withdraw(self, URL):
-        # self.ui = Ui_Dialog()
-
+    def get_data_from_URL(self, URL):
         global title
-        print('i am here3')
+        global duration
         mutex.lock()
 
         video = pafy.new(URL)
-        # print(video.title())
-        title = video.title()
+        title = video.title
+        duration = video.duration
 
-        # self.ui.video_title.setText(f"title = {title}")
+        print(f'title = {title}')
+        print(f'duration = {duration}')
 
-        self.updatedBalance.emit()
+        self.UPDATE.emit()
         mutex.unlock()
         self.finished.emit()
 
@@ -41,13 +41,9 @@ class Persenolize(QMainWindow, Ui_MainWindow):
     def initUI(self):
         self.setupUi(self)
         self.show()
-
-        self.add.clicked.connect(self.add_url)
-
-    def add_url(self):
         self.enter = Enter_url_window()
-        self.enter.show()
-
+        self.add.clicked.connect(lambda: self.enter.show())
+        
 
 class Enter_url_window(QDialog):
     def __init__(self, parent=None):
@@ -57,31 +53,31 @@ class Enter_url_window(QDialog):
         self.setFixedSize(590, 247)
 
         self.threads = []
-
-        self.ui.ok.clicked.connect(self.change_window_size)
         self.ui.ok.clicked.connect(self.startThreads)
 
-    def updateBalance(self):
+    def update(self):
         global title
+        global duration
         self.ui.video_title.setText(f"title = {title}")
+        self.ui.video_duration.setText(f"duration = {duration}")
         self.ui.video_title.adjustSize()
+        self.ui.video_duration.adjustSize()
+
+        self.setFixedWidth(590)
+        self.setFixedHeight(500)
 
     def createThread(self, URL):
-        print('i am here1')
         thread = QThread()
-        worker = AccountManager()
+        worker = Manager()
         worker.moveToThread(thread)
-        thread.started.connect(lambda: worker.withdraw(URL))
-
-        worker.updatedBalance.connect(self.updateBalance)
-
+        thread.started.connect(lambda: worker.get_data_from_URL(URL))
+        worker.UPDATE.connect(self.update)
         worker.finished.connect(thread.quit)
         worker.finished.connect(worker.deleteLater)
         thread.finished.connect(thread.deleteLater)
         return thread
 
     def startThreads(self):
-        print('i am here2')
         self.threads.clear()
         URL = self.ui.lineEdit.text()
         self.threads = [
@@ -91,9 +87,7 @@ class Enter_url_window(QDialog):
         for thread in self.threads:
             thread.start()
 
-    def change_window_size(self):
-        self.setFixedWidth(590)
-        self.setFixedHeight(500)
+    
 
 
 app = QApplication(sys.argv)
