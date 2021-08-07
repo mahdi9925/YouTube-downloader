@@ -1,5 +1,5 @@
 import sys
-import pafy
+from pytube import YouTube
 import time
 
 from YouTube_dl import Ui_MainWindow
@@ -9,6 +9,7 @@ from PyQt5.QtCore import QMutex, QObject, QThread, pyqtSignal
 
 title = ''
 duration = ''
+items = []
 mutex = QMutex()
 
 
@@ -17,16 +18,30 @@ class Manager(QObject):
     UPDATE = pyqtSignal()
 
     def get_data_from_URL(self, URL):
+        print('I am here')
         global title
-        global duration
+        global items
         mutex.lock()
 
-        video = pafy.new(URL)
+        video = YouTube(URL)
         title = video.title
-        duration = video.duration
 
+        streams = video.streams
+
+        for s in streams:
+            if s.abr == None:
+                s_abr = ''
+            else:
+                s_abr = f'/{s.abr}'
+            if s.resolution == None:
+                s_resolution = ''
+            else:
+                s_resolution = f'/{s.resolution}'
+
+            item = f'{s.mime_type}{s_resolution}{s_abr}/{s.filesize}'
+            items.append(item)
+        
         print(f'title = {title}')
-        print(f'duration = {duration}')
 
         self.UPDATE.emit()
         mutex.unlock()
@@ -57,12 +72,13 @@ class Enter_url_window(QDialog):
 
     def update(self):
         global title
-        global duration
+        global items
         self.ui.video_title.setText(f"title = {title}")
         self.ui.video_duration.setText(f"duration = {duration}")
         self.ui.video_title.adjustSize()
         self.ui.video_duration.adjustSize()
 
+        self.ui.comboBox.addItems(items)
         self.setFixedWidth(590)
         self.setFixedHeight(500)
 
