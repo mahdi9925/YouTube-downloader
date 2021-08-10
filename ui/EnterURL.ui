@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>590</width>
-    <height>247</height>
+    <height>243</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -213,13 +213,13 @@ QPushButton:pressed{
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>300</y>
-        <width>271</width>
-        <height>81</height>
+        <x>10</x>
+        <y>250</y>
+        <width>561</width>
+        <height>131</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -227,7 +227,7 @@ QPushButton:pressed{
         <widget class="QLabel" name="video_title">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>13</pointsize>
           </font>
          </property>
          <property name="text">
