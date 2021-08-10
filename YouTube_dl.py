@@ -51,6 +51,23 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, item)
         self.verticalLayout.addWidget(self.tableWidget)
+        self.progressBar = QtWidgets.QProgressBar(self.frame)
+        self.progressBar.setStyleSheet("QProgressBar {\n"
+"    color :#e1e1e1;\n"
+"    font-size : 17px;\n"
+"    border-style : none;\n"
+"    border-radius: 10px;\n"
+"    background-color : #325099;\n"
+"    text-align: center;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    border-radius : 10px;\n"
+"    background-color: qlineargradient(spread:pad, x1:0.193, y1:0.346591, x2:0.79, y2:0.71, stop:0 rgba(77, 83,         198, 255), stop:1 rgba(23, 197, 23, 255));\n"
+"}")
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
+        self.verticalLayout.addWidget(self.progressBar)
         self.frame_3 = QtWidgets.QFrame(self.frame)
         self.frame_3.setMaximumSize(QtCore.QSize(16777215, 51))
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -58,20 +75,20 @@ class Ui_MainWindow(object):
         self.frame_3.setObjectName("frame_3")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_3)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.add = QtWidgets.QPushButton(self.frame_3)
-        self.add.setMaximumSize(QtCore.QSize(100, 100))
-        self.add.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.add.setStyleSheet("QPushButton{\n"
+        self.new_2 = QtWidgets.QPushButton(self.frame_3)
+        self.new_2.setMaximumSize(QtCore.QSize(100, 100))
+        self.new_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.new_2.setStyleSheet("QPushButton{\n"
 "    border:none;\n"
 "}\n"
 "")
-        self.add.setText("")
+        self.new_2.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/icons/icons8-add-96 (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.add.setIcon(icon)
-        self.add.setIconSize(QtCore.QSize(50, 50))
-        self.add.setObjectName("add")
-        self.horizontalLayout_2.addWidget(self.add)
+        self.new_2.setIcon(icon)
+        self.new_2.setIconSize(QtCore.QSize(50, 50))
+        self.new_2.setObjectName("new_2")
+        self.horizontalLayout_2.addWidget(self.new_2)
         self.verticalLayout.addWidget(self.frame_3, 0, QtCore.Qt.AlignLeft)
         self.horizontalLayout.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -95,6 +112,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Size"))
         item = self.tableWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Date"))
+        self.new_2.setShortcut(_translate("MainWindow", "Ctrl+N"))
 import img_rc
 
 
