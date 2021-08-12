@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1148</width>
-    <height>651</height>
+    <width>1150</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -264,6 +264,10 @@ QPushButton::pressed{
 	border-radius: 2px;
 	margin-left: 5px;
 	margin-right: 5px;
+}
+
+QLineEdit:disabled{
+	background-color: #9c9a9b;
 }</string>
           </property>
           <property name="text">
@@ -279,11 +283,39 @@ QPushButton::pressed{
         </item>
         <item>
          <widget class="QPushButton" name="cancel_btn">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>100</width>
             <height>25</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+	border-radius: 3px;
+	border: 2px solid #4580ff;
+	background-color: #e1e1e1;
+}
+
+QPushButton::hover{
+	background-color: #9c9c9c;
+}
+
+QPushButton::pressed{
+	background-color: #707070;
+}
+
+QPushButton:disabled{
+	background-color: #9c9a9b;
+}</string>
           </property>
           <property name="text">
            <string>Cancel</string>
@@ -295,14 +327,39 @@ QPushButton::pressed{
         </item>
         <item>
          <widget class="QPushButton" name="ok_btn">
-          <property name="maximumSize">
+          <property name="minimumSize">
            <size>
             <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
             <height>25</height>
            </size>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QPushButton{
+	border-radius: 3px;
+	border: 2px solid #4580ff;
+	background-color: #e1e1e1;
+}
+
+QPushButton::hover{
+	background-color: #9c9c9c;
+}
+
+QPushButton::pressed{
+	background-color: #707070;
+}
+
+QPushButton:disabled{
+	background-color: #9c9a9b;
+}</string>
           </property>
           <property name="text">
            <string>OK</string>
@@ -319,28 +376,56 @@ QPushButton::pressed{
         <rect>
          <x>13</x>
          <y>750</y>
-         <width>671</width>
+         <width>991</width>
          <height>33</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QComboBox" name="comboBox_data">
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
            <string notr="true">QComboBox QAbstractItemView {
 	border: 1px solid grey;
 	background: #8e97d1;
 	font-size: 18px;
 	selection-background-color: rgb(66, 204, 123);
+}
+
+QComboBox:disabled{
+	background-color: #9c9a9b;
 }</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="file_name">
+         <widget class="QLineEdit" name="saveTo_name">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>700</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
-            <width>300</width>
+            <width>500</width>
             <height>25</height>
            </size>
           </property>
@@ -351,44 +436,32 @@ QPushButton::pressed{
 	color:#000;
 	background-color: #e1e1e1;
 	border-radius: 2px;
+}
+
+QLineEdit:disabled{
+	background-color: #9c9a9b;
 }</string>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="placeholderText">
-           <string>File Name...</string>
+           <string>Save to...</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="download_btn">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>100</width>
-            <height>16777215</height>
-           </size>
+         <widget class="QToolButton" name="save_file">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton{
-	background-color: rgb(215, 134, 255);
-	border-radius: 3px;
-}
-
-
-QPushButton:pressed{
-	background-color: rgb(106, 255, 123);
-	border-radius: 3px;
+           <string notr="true">QToolButton:disabled{
+	background-color: #9c9a9b;
 }</string>
           </property>
           <property name="text">
-           <string>Download</string>
+           <string>...</string>
           </property>
          </widget>
         </item>
@@ -426,6 +499,50 @@ QProgressBar::chunk {
        </property>
        <property name="value">
         <number>0</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="download_btn">
+       <property name="geometry">
+        <rect>
+         <x>1020</x>
+         <y>750</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(215, 134, 255);
+	border-radius: 3px;
+}
+
+
+QPushButton:pressed{
+	background-color: rgb(106, 255, 123);
+	border-radius: 3px;
+}
+
+QPushButton:disabled{
+	background-color: #9c9a9b;
+}</string>
+       </property>
+       <property name="text">
+        <string>Download</string>
        </property>
       </widget>
      </widget>
