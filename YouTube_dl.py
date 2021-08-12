@@ -14,7 +14,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1146, 732)
+        MainWindow.resize(1148, 651)
+        MainWindow.setStyleSheet("QMainWindow{\n"
+"    border-radius: 20px;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -34,13 +37,13 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
-        self.widget = QtWidgets.QWidget(self.frame_2)
-        self.widget.setGeometry(QtCore.QRect(20, 3, 561, 31))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.frame_2)
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 3, 561, 31))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.pushButton = QtWidgets.QPushButton(self.widget)
+        self.pushButton = QtWidgets.QPushButton(self.layoutWidget)
         self.pushButton.setStyleSheet("QPushButton{\n"
 "    background-color: #51a8d6;\n"
 "    border-radius: 3px;\n"
@@ -58,7 +61,7 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_3.addWidget(self.pushButton)
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_2 = QtWidgets.QPushButton(self.layoutWidget)
         self.pushButton_2.setStyleSheet("QPushButton{\n"
 "    background-color: #f2883d;\n"
 "    border-radius: 3px;\n"
@@ -76,7 +79,7 @@ class Ui_MainWindow(object):
 "}")
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_3.addWidget(self.pushButton_2)
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_3 = QtWidgets.QPushButton(self.layoutWidget)
         self.pushButton_3.setStyleSheet("QPushButton{\n"
 "    background-color: #b463f2;\n"
 "    border-radius: 3px;\n"
@@ -109,8 +112,104 @@ class Ui_MainWindow(object):
         self.tableWidget.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, item)
+        self.frame_3 = QtWidgets.QFrame(self.frame)
+        self.frame_3.setGeometry(QtCore.QRect(10, 580, 61, 51))
+        self.frame_3.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.add_btn = QtWidgets.QPushButton(self.frame_3)
+        self.add_btn.setGeometry(QtCore.QRect(0, 0, 54, 50))
+        self.add_btn.setMaximumSize(QtCore.QSize(100, 100))
+        self.add_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.add_btn.setStyleSheet("QPushButton{\n"
+"    border:none;\n"
+"}\n"
+"")
+        self.add_btn.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/icons8-add-96 (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.add_btn.setIcon(icon)
+        self.add_btn.setIconSize(QtCore.QSize(50, 50))
+        self.add_btn.setObjectName("add_btn")
+        self.layoutWidget1 = QtWidgets.QWidget(self.frame)
+        self.layoutWidget1.setGeometry(QtCore.QRect(0, 690, 1121, 33))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget1)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.Enter_links = QtWidgets.QLineEdit(self.layoutWidget1)
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.Enter_links.setFont(font)
+        self.Enter_links.setStyleSheet("QLineEdit{\n"
+"    border: 0.5px solid #000;\n"
+"    selection-color: rgb(0, 0, 0);\n"
+"    selection-background-color: rgb(0, 220, 106);\n"
+"    color:#000;\n"
+"    background-color: #e1e1e1;\n"
+"    border-radius: 2px;\n"
+"    margin-left: 5px;\n"
+"    margin-right: 5px;\n"
+"}")
+        self.Enter_links.setText("")
+        self.Enter_links.setDragEnabled(True)
+        self.Enter_links.setObjectName("Enter_links")
+        self.horizontalLayout.addWidget(self.Enter_links)
+        self.cancel_btn = QtWidgets.QPushButton(self.layoutWidget1)
+        self.cancel_btn.setMaximumSize(QtCore.QSize(100, 25))
+        self.cancel_btn.setObjectName("cancel_btn")
+        self.horizontalLayout.addWidget(self.cancel_btn)
+        self.ok_btn = QtWidgets.QPushButton(self.layoutWidget1)
+        self.ok_btn.setMaximumSize(QtCore.QSize(100, 25))
+        self.ok_btn.setStyleSheet("")
+        self.ok_btn.setObjectName("ok_btn")
+        self.horizontalLayout.addWidget(self.ok_btn)
+        self.layoutWidget2 = QtWidgets.QWidget(self.frame)
+        self.layoutWidget2.setGeometry(QtCore.QRect(13, 750, 671, 33))
+        self.layoutWidget2.setObjectName("layoutWidget2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.layoutWidget2)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.comboBox_data = QtWidgets.QComboBox(self.layoutWidget2)
+        self.comboBox_data.setStyleSheet("QComboBox QAbstractItemView {\n"
+"    border: 1px solid grey;\n"
+"    background: #8e97d1;\n"
+"    font-size: 18px;\n"
+"    selection-background-color: rgb(66, 204, 123);\n"
+"}")
+        self.comboBox_data.setObjectName("comboBox_data")
+        self.horizontalLayout_2.addWidget(self.comboBox_data)
+        self.file_name = QtWidgets.QLineEdit(self.layoutWidget2)
+        self.file_name.setMaximumSize(QtCore.QSize(300, 25))
+        self.file_name.setStyleSheet("QLineEdit{\n"
+"    selection-color: rgb(0, 0, 0);\n"
+"    selection-background-color: rgb(0, 220, 106);\n"
+"    color:#000;\n"
+"    background-color: #e1e1e1;\n"
+"    border-radius: 2px;\n"
+"}")
+        self.file_name.setText("")
+        self.file_name.setObjectName("file_name")
+        self.horizontalLayout_2.addWidget(self.file_name)
+        self.download_btn = QtWidgets.QPushButton(self.layoutWidget2)
+        self.download_btn.setMinimumSize(QtCore.QSize(100, 30))
+        self.download_btn.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.download_btn.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(215, 134, 255);\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color: rgb(106, 255, 123);\n"
+"    border-radius: 3px;\n"
+"}")
+        self.download_btn.setObjectName("download_btn")
+        self.horizontalLayout_2.addWidget(self.download_btn)
         self.prog_bar = QtWidgets.QProgressBar(self.frame)
-        self.prog_bar.setGeometry(QtCore.QRect(10, 590, 1101, 21))
+        self.prog_bar.setGeometry(QtCore.QRect(80, 590, 1019, 20))
+        self.prog_bar.setMaximumSize(QtCore.QSize(16777215, 20))
         self.prog_bar.setStyleSheet("QProgressBar {\n"
 "    color :#e1e1e1;\n"
 "    font-size : 17px;\n"
@@ -126,92 +225,8 @@ class Ui_MainWindow(object):
 "}")
         self.prog_bar.setProperty("value", 0)
         self.prog_bar.setObjectName("prog_bar")
-        self.frame_3 = QtWidgets.QFrame(self.frame)
-        self.frame_3.setGeometry(QtCore.QRect(9, 620, 72, 51))
-        self.frame_3.setMaximumSize(QtCore.QSize(16777215, 51))
-        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.add_btn = QtWidgets.QPushButton(self.frame_3)
-        self.add_btn.setGeometry(QtCore.QRect(10, 10, 54, 33))
-        self.add_btn.setMaximumSize(QtCore.QSize(100, 100))
-        self.add_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.add_btn.setStyleSheet("QPushButton{\n"
-"    border:none;\n"
-"}\n"
-"")
-        self.add_btn.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/icons/icons8-add-96 (1).png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.add_btn.setIcon(icon)
-        self.add_btn.setIconSize(QtCore.QSize(50, 50))
-        self.add_btn.setObjectName("add_btn")
-        self.widget1 = QtWidgets.QWidget(self.frame)
-        self.widget1.setGeometry(QtCore.QRect(0, 690, 1121, 33))
-        self.widget1.setObjectName("widget1")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget1)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.Enter_links = QtWidgets.QLineEdit(self.widget1)
-        font = QtGui.QFont()
-        font.setPointSize(15)
-        self.Enter_links.setFont(font)
-        self.Enter_links.setStyleSheet("QLineEdit{\n"
-"    border: 0.5px solid #000;\n"
-"    selection-color: rgb(0, 0, 0);\n"
-"    selection-background-color: rgb(0, 220, 106);\n"
-"    color:#000;\n"
-"    background-color: #e1e1e1;\n"
-"    border-radius: 2px;\n"
-"    margin-left: 5px;\n"
-"    margin-right: 5px;\n"
-"}")
-        self.Enter_links.setDragEnabled(True)
-        self.Enter_links.setObjectName("Enter_links")
-        self.horizontalLayout.addWidget(self.Enter_links)
-        self.cancel_btn = QtWidgets.QPushButton(self.widget1)
-        self.cancel_btn.setMaximumSize(QtCore.QSize(100, 25))
-        self.cancel_btn.setObjectName("cancel_btn")
-        self.horizontalLayout.addWidget(self.cancel_btn)
-        self.ok_btn = QtWidgets.QPushButton(self.widget1)
-        self.ok_btn.setMaximumSize(QtCore.QSize(100, 25))
-        self.ok_btn.setStyleSheet("")
-        self.ok_btn.setObjectName("ok_btn")
-        self.horizontalLayout.addWidget(self.ok_btn)
-        self.widget2 = QtWidgets.QWidget(self.frame)
-        self.widget2.setGeometry(QtCore.QRect(13, 750, 561, 32))
-        self.widget2.setObjectName("widget2")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget2)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.comboBox_data = QtWidgets.QComboBox(self.widget2)
-        self.comboBox_data.setMaximumSize(QtCore.QSize(300, 16777215))
-        self.comboBox_data.setObjectName("comboBox_data")
-        self.horizontalLayout_2.addWidget(self.comboBox_data)
-        self.download_btn = QtWidgets.QPushButton(self.widget2)
-        self.download_btn.setMinimumSize(QtCore.QSize(100, 30))
-        self.download_btn.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.download_btn.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(215, 134, 255);\n"
-"    border-radius: 3px;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color: rgb(106, 255, 123);\n"
-"    border-radius: 3px;\n"
-"}")
-        self.download_btn.setObjectName("download_btn")
-        self.horizontalLayout_2.addWidget(self.download_btn)
         self.verticalLayout_2.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1146, 24))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -229,10 +244,12 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Date"))
         self.add_btn.setShortcut(_translate("MainWindow", "Ctrl+N"))
+        self.Enter_links.setPlaceholderText(_translate("MainWindow", "Enter YouTube URL..."))
         self.cancel_btn.setText(_translate("MainWindow", "Cancel"))
         self.cancel_btn.setShortcut(_translate("MainWindow", "Ctrl+Z"))
         self.ok_btn.setText(_translate("MainWindow", "OK"))
         self.ok_btn.setShortcut(_translate("MainWindow", "Ctrl+O"))
+        self.file_name.setPlaceholderText(_translate("MainWindow", "File Name..."))
         self.download_btn.setText(_translate("MainWindow", "Download"))
 import img_rc
 
