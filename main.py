@@ -5,7 +5,7 @@ import urllib.request
 from YouTube_dl import Ui_MainWindow
 from EnterURL import Ui_Dialog
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox
-from PyQt5.QtCore import QMutex, QObject, QThread, pyqtSignal
+from PyQt5.QtCore import QMutex, QObject, QThread, pyqtSignal, Qt
 
 
 items = []
@@ -54,17 +54,19 @@ class Manager(QObject):
         mutex.unlock()
         self.finished.emit()
 
-    def download_video_Manger(self, index):
+    def download_video_Manger(self, index, FileName):
         print('hello')
         download_mutex.lock()
+
         for index_tag, tag in enumerate(tags):
             if index == index_tag:
                 print(f'{index} = {index_tag} and tag = {tag}')
                 stream = streams.get_by_itag(tag)
+                if FileName == '':
+                    FileName == stream.title
                 url = stream.url
                 urllib.request.urlretrieve(
-                    url, stream.title, self.Handle_ProgressBar)
-
+                    url, FileName, self.Handle_ProgressBar)
         download_mutex.unlock()
         self.finished.emit()
 
@@ -84,18 +86,27 @@ class Persenolize(QMainWindow, Ui_MainWindow):
 
     def initUI(self):
         self.setupUi(self)
-        self.setFixedSize(1146, 732)
+        self.setFixedSize(1148, 658)
 
-        
+        self.prog_bar.hide()
+        self.download_btn.setEnabled(False)
+        self.file_name.setEnabled(False)
+        self.ok_btn.setEnabled(False)
+        self.Enter_links.textChanged.connect(self.enable_disable_btn)
 
         self.show()
-
         self.threads = []
 
         self.add_btn.clicked.connect(self.Enter_url)
         self.ok_btn.clicked.connect(self.startThread_get_data_Thread)
         self.download_btn.clicked.connect(
             self.startThread_get_current_index_comboBox)
+
+    def enable_disable_btn(self):
+        if len(self.Enter_links.text()) > 0:
+            self.ok_btn.setEnabled(True)
+        else:
+            self.ok_btn.setEnabled(False)
 
     def startThread_get_data_Thread(self):
         self.threads.clear()
@@ -119,19 +130,24 @@ class Persenolize(QMainWindow, Ui_MainWindow):
     def update_Enter_url_window(self):
         global items
         self.comboBox_data.addItems(items)
+        self.download_btn.setEnabled(True)
+        self.file_name.setEnabled(True)
 
     def startThread_get_current_index_comboBox(self):
         self.download_btn.setEnabled(False)
+        self.prog_bar.show()
         index = self.comboBox_data.currentIndex()
-        self.threads.append(self.download_Thread(index))
+        FileName = self.file_name.text()
+        self.threads.append(self.download_Thread(index, FileName))
         self.threads[1].start()
 
-    def download_Thread(self, index):
+    def download_Thread(self, index, FileName):
         print('I am in downloadThread')
         thread = QThread()
         worker = Manager()
         worker.moveToThread(thread)
-        thread.started.connect(lambda: worker.download_video_Manger(index))
+        thread.started.connect(
+            lambda: worker.download_video_Manger(index, FileName))
         worker.Handle_Progress.connect(self.Update_progress)
         worker.finished.connect(thread.quit)
         worker.finished.connect(worker.deleteLater)
@@ -142,83 +158,18 @@ class Persenolize(QMainWindow, Ui_MainWindow):
         print(download_percentage)
         self.prog_bar.setValue(download_percentage)
         if download_percentage >= 100:
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Information)
-                msg.setText("Download successfully!")
-                msg.setWindowTitle("Informaition")
-                msg.setStandardButtons(QMessageBox.Ok)
-                msg.exec_()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Download successfully!")
+            msg.setWindowTitle("Informaition")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
+            self.download_btn.setEnabled(True)
+            self.ok_btn.setEnabled(True)
+            self.Enter_links.setEnabled(True)
 
     def Enter_url(self):
         self.setFixedSize(1146, 856)
-
-
-# class Enter_url_window(QDialog):
-#     def __init__(self, parent=None):
-#         QDialog.__init__(self, parent)
-#         self.ui = Ui_Dialog()
-#         self.ui.setupUi(self)
-
-#         self.setFixedSize(590, 247)
-
-#         self.threads = []
-#         self.ui.ok.clicked.connect(self.startThread_get_data_Thread)
-#         self.ui.download.clicked.connect(
-#             self.startThread_get_current_index_comboBox)
-
-#     def update_Enter_url_window(self):
-#         global title
-#         global items
-#         self.ui.video_title.setText(f"title = {title}")
-#         self.ui.video_duration.setText(f"duration = {duration}")
-#         self.ui.video_title.adjustSize()
-#         self.ui.video_duration.adjustSize()
-#         self.ui.comboBox.addItems(items)
-#         self.setFixedWidth(590)
-#         self.setFixedHeight(500)
-
-#     def get_data_Thread(self, URL):
-#         thread = QThread()
-#         worker = Manager()
-#         worker.moveToThread(thread)
-#         thread.started.connect(lambda: worker.get_data_from_URL(URL))
-#         worker.UPDATE.connect(self.update_Enter_url_window)
-#         worker.finished.connect(thread.quit)
-#         worker.finished.connect(worker.deleteLater)
-#         thread.finished.connect(thread.deleteLater)
-#         return thread
-
-#     def download_Thread(self, index):
-#         print('I am in downloadThread')
-#         thread = QThread()
-#         worker = Manager()
-#         worker.moveToThread(thread)
-#         thread.started.connect(lambda: worker.download_video_Manger(index))
-#         # worker.Handle_Progress.connect(self.Update_progress)
-#         worker.finished.connect(thread.quit)
-#         worker.finished.connect(worker.deleteLater)
-#         thread.finished.connect(thread.deleteLater)
-#         return thread
-
-#     # def Update_progress(self, download_percentage):
-#     #     print('I am here')
-#     #     self.main = Persenolize()
-#     #     print(download_percentage)
-#     #     self.main.prog_bar.setValue(download_percentage)
-#     #     Persenolize.prog(download_percentage)
-#     #     print(self.YouTubeDl.prog_bar.value())
-
-#     def startThread_get_data_Thread(self):
-#         self.threads.clear()
-#         URL = self.ui.lineEdit.text()
-#         self.threads.append(self.get_data_Thread(URL))
-#         self.threads[0].start()
-
-#     def startThread_get_current_index_comboBox(self):
-#         self.ui.download.setEnabled(False)
-#         index = self.ui.comboBox.currentIndex()
-#         self.threads.append(self.download_Thread(index))
-#         self.threads[1].start()
 
 
 app = QApplication(sys.argv)
