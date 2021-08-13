@@ -254,7 +254,7 @@ class Ui_MainWindow(object):
         self.save_file.setObjectName("save_file")
         self.horizontalLayout_2.addWidget(self.save_file)
         self.prog_bar = QtWidgets.QProgressBar(self.frame)
-        self.prog_bar.setGeometry(QtCore.QRect(80, 590, 1019, 20))
+        self.prog_bar.setGeometry(QtCore.QRect(80, 640, 1019, 20))
         self.prog_bar.setMaximumSize(QtCore.QSize(16777215, 20))
         self.prog_bar.setStyleSheet("QProgressBar {\n"
 "    color :#e1e1e1;\n"
@@ -291,6 +291,14 @@ class Ui_MainWindow(object):
 "    background-color: #9c9a9b;\n"
 "}")
         self.download_btn.setObjectName("download_btn")
+        self.animation = QtWidgets.QLabel(self.frame)
+        self.animation.setGeometry(QtCore.QRect(90, 590, 50, 50))
+        self.animation.setText("")
+        self.animation.setObjectName("animation")
+        self.loading_text = QtWidgets.QLabel(self.frame)
+        self.loading_text.setGeometry(QtCore.QRect(160, 587, 151, 41))
+        self.loading_text.setText("")
+        self.loading_text.setObjectName("loading_text")
         self.verticalLayout_2.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
 

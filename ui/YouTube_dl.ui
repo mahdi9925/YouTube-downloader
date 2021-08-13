@@ -471,7 +471,7 @@ QLineEdit:disabled{
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>590</y>
+         <y>640</y>
          <width>1019</width>
          <height>20</height>
         </rect>
@@ -543,6 +543,32 @@ QPushButton:disabled{
        </property>
        <property name="text">
         <string>Download</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="animation">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>590</y>
+         <width>50</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="loading_text">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>587</y>
+         <width>151</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
